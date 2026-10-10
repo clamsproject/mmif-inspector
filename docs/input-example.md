@@ -58,7 +58,7 @@ Here is a fragment of the summary of a MMIF file, one that was created with the 
       "end-time": 101060,
       "text": "Good evening. Here are the top news headlines",
       "id": "v_0:se_4"
-    },
+    }
   ],
   "captions": [],
   "timeframes": {

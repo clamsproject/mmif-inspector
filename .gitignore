@@ -10,6 +10,7 @@ dist
 
 # Personal scratch files and output files
 backup.sh
+find.sh
 code/test.sh
 code/examples/v9
 code/examples/dot-*
@@ -18,6 +19,7 @@ code/examples/cpb-aacip-*
 code/dot-out*
 code/out
 code/out-*
+tmp*
 
 # Some uv-related files that we are not using yet
 code/.python-version
