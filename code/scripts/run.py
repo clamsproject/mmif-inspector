@@ -1,6 +1,6 @@
 """
 
-Utility script to provided an entry point to some current other scripts and
+Utility script to provide an entry point to some current other scripts and
 utilities.
 
 Assumes that the Python command connects to an environment with the proper
@@ -8,18 +8,11 @@ modules installed.
 
 To run this do one of the following.
 
-
-$ python run.py --load MMIF_FILE
-
-Load a MMIF file just to check whether it loads fine.
-
-
 $ python run.py --inspect DIRECTORY
 
-DIRECTORY is a directory with MMIF Summaries. This will ask the user to enter an output
-directory. It walks trough all summaries in the input directory  and creates mini-websites
-for them.
-
+DIRECTORY is a directory with MMIF Summaries. This will ask the user to enter
+an output directory. It walks trough all summaries in the input directory and
+creates mini-websites for them.
 
 """
 
@@ -33,15 +26,7 @@ import subprocess
 from pathlib import Path
 from subprocess import Popen, PIPE
 
-sys.path.extend('..', '../../../mmif-python/')
-from mmif.serialize import Mmif
 from inspector import create_www
-
-
-
-def load_mmif(fname: str):
-    loaded_mmif = Mmif(open(fname).read())
-    print(len(str(loaded_mmif)))
 
 
 def inspect(directory: str):
@@ -112,7 +97,6 @@ def argparser():
     parser = argparse.ArgumentParser()
     parser.add_argument('--pretty', metavar='DIR', help=help_pretty)
     parser.add_argument('--inspect', metavar='DIR', help=help_inspect)
-    parser.add_argument('--load', metavar='MMIF_FILE', help='load MMIF file')
     return parser
 
 
@@ -123,9 +107,6 @@ if __name__ == '__main__':
 
     if args.pretty:
         pretty_print(args.pretty)
-
-    if args.load:
-        load_mmif(args.load)
 
     if args.inspect:
         inspect(args.inspect)
