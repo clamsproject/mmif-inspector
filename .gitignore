@@ -17,8 +17,9 @@ code/examples/dot-*
 code/examples/pipelines
 code/examples/cpb-aacip-*
 code/dot-out*
-code/out
-code/out-*
+src/*egg-info
+src/out
+src/out-*
 tmp*
 
 # Some uv-related files that we are not using yet
