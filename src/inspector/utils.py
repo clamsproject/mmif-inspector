@@ -28,7 +28,6 @@ def timestamp(milliseconds: int, format='hh:mm:ss'):
         return f'{hours}:{m:02d}:{s:02d}.{ms:03d}'
 
 
-
 # TODO: this may be deprecated, make it more general in case we use it again
 def sorted_pairs(d: dict):
     """Return the dictionary as a list of sorted <key, value> where the sorting

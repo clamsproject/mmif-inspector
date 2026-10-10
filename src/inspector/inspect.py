@@ -177,10 +177,10 @@ class Summary:
         self.captions = [Caption(c) for c in summary['captions']]
         self.transcript = [TranscriptLine(line) for line in summary['transcript']]
         self.categories = entity_categories
-        self.entities = [Entity(e) for e in summary['entities']]
+        self.entities = [Entity(e) for e in summary.get('entities', [])]
         self.entities = [e for e in self.entities if e.has_instances()]
-        # this is somewhat ugly, once there is a warnings or view class maybe it
-        # can go there
+        # making the utility available in the template by storing it here
+        # could also just hand in the utility module to the template
         self.display = pretty_json
 
 
@@ -238,10 +238,10 @@ def create_resources(outpath: Path):
 def document_info(inpath: Path, summary: dict) -> dict:
     """Collect document-level information from the summary."""
     mv = summary["mmif_version"]
-    doc = summary['document']
+    doc = summary.get('document', {})
     return {
         'MMIF Version': f'<a href="{mv}">{mv}</a>',
-        'Size of MMIF file': f"{doc['size']:,d}    ",
+        'Size of MMIF file': f"{doc.get('size', 0):,d}    ",
         'Size of summary': f'{os.path.getsize(inpath):,d}',
         'Video duration': doc.get('duration_ts', 'Not available'),
         'Frames per second': doc.get('fps', 'Not available') }
@@ -265,9 +265,9 @@ def timeframe_statistics(summary: dict) -> dict:
     """Create a dictioray with statistics on timeframe labels like average length,
     coverage (% of the vido that falls under the labels timeframe spans) and number
     of frames."""
-    video_length = summary['document'].get('duration_ms', float('nan'))
+    video_length = summary.get('document', {}).get('duration_ms', float('nan'))
     all_stats = {}
-    for app in summary['timeframe_stats']:
+    for app in summary.get('timeframe_stats', {}):
         all_stats[app] = {}
         stats = summary['timeframe_stats'][app]
         for label, tf_stats in sorted_pairs(stats):

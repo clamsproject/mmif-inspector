@@ -72,14 +72,15 @@
 {% endif %}
 <tr valign=top>
   <td>parameters</td>
-  <td>{{ summary.display(view['parameters']) }}</td>
+  <td>{{ summary.display(view.get('parameters',{})) }}</td>
 </tr>
 <tr valign=top>
   <td>appConfiguration
   </td>
   <td>
     <button onclick="toggle('conf-{{ view['id']}}')">Show/Hide</button>
-    <pre id=conf-{{ view['id'] }} style="display: none">{{ summary.display(view['appConfiguration']) }}</pre>
+    <pre id=conf-{{ view['id'] }} style="display: none">
+      {{ summary.display(view.get('appConfiguration',{})) }}</pre>
   </td>
 </tr>
 {% if  view['id'] in summary.warnings %}
@@ -99,4 +100,3 @@
 
 </body>
 </html>
-
